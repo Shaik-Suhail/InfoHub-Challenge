@@ -153,17 +153,23 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Serve the React build
+// ✅ Serve static files
 app.use(express.static(path.join(__dirname, "client-dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client-dist", "index.html"));
+// ✅ Catch-all route fix for Express 5+
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api")) {
+    res.sendFile(path.join(__dirname, "client-dist", "index.html"));
+  } else {
+    next();
+  }
 });
 
 // ✅ Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
 
 
 // ---------------- START SERVER ----------------
