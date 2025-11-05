@@ -68,18 +68,22 @@ InfoHub-Challenge/
 ```bash
 git clone https://github.com/Shaik-Suhail/InfoHub-Challenge.git
 cd InfoHub-Challenge
-
-2. Backend Setup
+⚙️ 2. Backend Setup
+bash
+Copy code
 cd server
 npm init -y
 npm install express axios cors dotenv
-
 Create a .env file inside /server:
+
+ini
+Copy code
 PORT=3001
 OPENWEATHER_KEY=your_api_key_here
 WEATHER_CITY=Hyderabad,IN
-
-3. Frontend Setup
+💻 3. Frontend Setup
+bash
+Copy code
 cd ..
 npm create vite@latest client -- --template react
 cd client
@@ -87,42 +91,40 @@ npm install
 npm install axios
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
-
 Add Tailwind setup in tailwind.config.js:
+
+js
+Copy code
 content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 theme: { extend: {} },
 plugins: [],
-
 Add Tailwind imports in index.css:
+
+css
+Copy code
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-4. Backend Routes Overview
+🧠 4. Backend Routes Overview
 🧩 /api/weather
-
 Fetches real-time weather data using the OpenWeather API.
 
 💱 /api/currency
-
 Fetches exchange rates from ExchangeRate API, returning INR → USD, EUR, GBP, JPY, AUD.
 
 💬 /api/quote
-
 Fetches random motivational quotes from Quotable API.
 If the API fails, it returns quotes from a local fallback list.
 
 🖌️ 5. Frontend Components
-| Component               | Description                                                       |
-| ----------------------- | ----------------------------------------------------------------- |
-| `WeatherModule.jsx`     | Displays live weather data and allows searching different cities. |
-| `CurrencyConverter.jsx` | Converts INR into multiple currencies (USD, EUR, GBP, JPY, AUD).  |
-| `QuoteGenerator.jsx`    | Displays motivational quotes (from API or fallback).              |
+Component	Description
+WeatherModule.jsx	Displays live weather data and allows searching different cities.
+CurrencyConverter.jsx	Converts INR into multiple currencies (USD, EUR, GBP, JPY, AUD).
+QuoteGenerator.jsx	Displays motivational quotes (from API or fallback).
 
 All components include loading + error states, ensuring smooth UX.
 
 🎨 6. UI/UX and Responsiveness
-
 Built with Tailwind CSS
 
 Optimized for both desktop and mobile
@@ -132,17 +134,26 @@ Modern cards, shadows, icons, and smooth transitions
 Lucide-react icons enhance visualization
 
 🧱 7. Building the Frontend
-
 In /client directory:
+
+bash
+Copy code
 npm run build
-
 This generates a production-ready folder:
+
+bash
+Copy code
 client/dist
-
 Then move it into the server directory:
-Move-Item -Path "C:\Users\HP\InfoHub-Challenge\client\dist" -Destination "C:\Users\HP\InfoHub-Challenge\server\client-dist"
 
+bash
+Copy code
+Move-Item -Path "C:\Users\HP\InfoHub-Challenge\client\dist" -Destination "C:\Users\HP\InfoHub-Challenge\server\client-dist"
 🧩 8. Integrate Frontend into Server
+In server/server.js:
+
+js
+Copy code
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -160,30 +171,31 @@ app.use((req, res, next) => {
     next();
   }
 });
-
 🚀 9. Local Testing
-
 Run both servers:
 
 Backend
+bash
+Copy code
 cd server
 node server.js
-
 → Runs at http://localhost:3001
 
 Frontend
+bash
+Copy code
 cd client
 npm run dev
-
 → Runs at http://localhost:5173
 
 ☁️ 10. Deployment (Render)
-
 Push to GitHub
+
+bash
+Copy code
 git add .
 git commit -m "Initial project and build"
 git push origin main
-
 On Render:
 
 Create a New Web Service
@@ -205,6 +217,8 @@ PORT → 10000
 Render automatically deploys both backend and frontend together.
 
 ✅ Deployment Log should show:
+
+arduino
+Copy code
 ✅ Server running on http://localhost:10000
 ==> Your service is live 🎉
-
