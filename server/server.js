@@ -153,11 +153,12 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Serve static files
+// ✅ Serve static files for production
 app.use(express.static(path.join(__dirname, "client-dist")));
 
 // ✅ Catch-all route fix for Express 5+
 app.use((req, res, next) => {
+  // Serve index.html only for non-API GET routes
   if (req.method === "GET" && !req.path.startsWith("/api")) {
     res.sendFile(path.join(__dirname, "client-dist", "index.html"));
   } else {
