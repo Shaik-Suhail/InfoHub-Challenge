@@ -44,40 +44,17 @@ To design and deploy a single-page web app (SPA) that brings together weather, c
 
 ```
 
-InfoHub-Challenge/
-├── client/                 # React frontend (Vite + Tailwind)
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── WeatherModule.jsx
-│   │   │   ├── CurrencyConverter.jsx
-│   │   │   └── QuoteGenerator.jsx
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                 # Express backend
-│   ├── server.js
-│   ├── .env
-│   └── client-dist/        # Built React frontend (copied after `npm run build`)
-│
-├── README.md
-└── package.json
+<img width="776" height="473" alt="image" src="https://github.com/user-attachments/assets/66ff7e2a-69c7-47c0-aad1-afb7f4686f2e" />
 
 ````
 
----
-
-### 🧩 1. Clone the Repository
+🧩 1. Clone the Repository
 ```bash
 git clone https://github.com/Shaik-Suhail/InfoHub-Challenge.git
 cd InfoHub-Challenge
 ````
 
----
+--
 
 ### ⚙️ 2. Backend Setup
 
