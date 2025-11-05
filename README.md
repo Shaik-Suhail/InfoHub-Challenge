@@ -38,52 +38,68 @@ To design and deploy a single-page web app (SPA) that brings together weather, c
 
 ---
 
+
+```markdown
 ## 📁 Folder Structure
 
+```
+
 InfoHub-Challenge/
-├── client/ # React frontend (Vite + Tailwind)
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── WeatherModule.jsx
-│ │ │ ├── CurrencyConverter.jsx
-│ │ │ └── QuoteGenerator.jsx
-│ │ ├── App.jsx
-│ │ ├── main.jsx
-│ │ └── index.css
-│ ├── tailwind.config.js
-│ ├── postcss.config.js
-│ ├── package.json
-│ └── vite.config.js
+├── client/                 # React frontend (Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── WeatherModule.jsx
+│   │   │   ├── CurrencyConverter.jsx
+│   │   │   └── QuoteGenerator.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── package.json
+│   └── vite.config.js
 │
-├── server/ # Express backend
-│ ├── server.js
-│ ├── .env
-│ └── client-dist/ # Built React frontend (copied after npm run build)
+├── server/                 # Express backend
+│   ├── server.js
+│   ├── .env
+│   └── client-dist/        # Built React frontend (copied after `npm run build`)
 │
 ├── README.md
 └── package.json
-## 🪜 Step-by-Step Setup Guide
+
+````
+
+---
 
 ### 🧩 1. Clone the Repository
 ```bash
 git clone https://github.com/Shaik-Suhail/InfoHub-Challenge.git
 cd InfoHub-Challenge
-⚙️ 2. Backend Setup
-bash
-Copy code
+````
+
+---
+
+### ⚙️ 2. Backend Setup
+
+```bash
 cd server
 npm init -y
 npm install express axios cors dotenv
-Create a .env file inside /server:
+```
 
-ini
-Copy code
+**Create a `.env` file inside `/server`:**
+
+```ini
 PORT=3001
 OPENWEATHER_KEY=your_api_key_here
 WEATHER_CITY=Hyderabad,IN
-💻 3. Frontend Setup
-bash
-Copy code
+```
+
+---
+
+### 💻 3. Frontend Setup
+
+```bash
 cd ..
 npm create vite@latest client -- --template react
 cd client
@@ -91,69 +107,91 @@ npm install
 npm install axios
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
-Add Tailwind setup in tailwind.config.js:
+```
 
-js
-Copy code
+**Add Tailwind setup in `tailwind.config.js`:**
+
+```js
 content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 theme: { extend: {} },
 plugins: [],
-Add Tailwind imports in index.css:
+```
 
-css
-Copy code
+**Add Tailwind imports in `index.css`:**
+
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-🧠 4. Backend Routes Overview
-🧩 /api/weather
-Fetches real-time weather data using the OpenWeather API.
+```
 
-💱 /api/currency
-Fetches exchange rates from ExchangeRate API, returning INR → USD, EUR, GBP, JPY, AUD.
+---
 
-💬 /api/quote
-Fetches random motivational quotes from Quotable API.
-If the API fails, it returns quotes from a local fallback list.
+### 🧠 4. Backend Routes Overview
 
-🖌️ 5. Frontend Components
-Component	Description
-WeatherModule.jsx	Displays live weather data and allows searching different cities.
-CurrencyConverter.jsx	Converts INR into multiple currencies (USD, EUR, GBP, JPY, AUD).
-QuoteGenerator.jsx	Displays motivational quotes (from API or fallback).
+#### 🧩 `/api/weather`
 
-All components include loading + error states, ensuring smooth UX.
+Fetches real-time weather data using the **OpenWeather API**.
 
-🎨 6. UI/UX and Responsiveness
-Built with Tailwind CSS
+#### 💱 `/api/currency`
 
-Optimized for both desktop and mobile
+Fetches exchange rates from **ExchangeRate API**, returning INR → USD, EUR, GBP, JPY, AUD.
 
-Modern cards, shadows, icons, and smooth transitions
+#### 💬 `/api/quote`
 
-Lucide-react icons enhance visualization
+Fetches random motivational quotes from **Quotable API**.
+If the API fails, it returns quotes from a **local fallback list**.
 
-🧱 7. Building the Frontend
-In /client directory:
+---
 
-bash
-Copy code
+### 🖌️ 5. Frontend Components
+
+| Component               | Description                                                       |
+| ----------------------- | ----------------------------------------------------------------- |
+| `WeatherModule.jsx`     | Displays live weather data and allows searching different cities. |
+| `CurrencyConverter.jsx` | Converts INR into multiple currencies (USD, EUR, GBP, JPY, AUD).  |
+| `QuoteGenerator.jsx`    | Displays motivational quotes (from API or fallback).              |
+
+All components include **loading + error states**, ensuring smooth UX.
+
+---
+
+### 🎨 6. UI/UX and Responsiveness
+
+* Built with **Tailwind CSS**
+* Optimized for **both desktop and mobile**
+* Modern cards, shadows, icons, and smooth transitions
+* Uses **Lucide-react** icons for visualization
+
+---
+
+### 🧱 7. Building the Frontend
+
+In `/client` directory:
+
+```bash
 npm run build
+```
+
 This generates a production-ready folder:
 
-bash
-Copy code
+```bash
 client/dist
+```
+
 Then move it into the server directory:
 
-bash
-Copy code
+```bash
 Move-Item -Path "C:\Users\HP\InfoHub-Challenge\client\dist" -Destination "C:\Users\HP\InfoHub-Challenge\server\client-dist"
-🧩 8. Integrate Frontend into Server
-In server/server.js:
+```
 
-js
-Copy code
+---
+
+### 🧩 8. Integrate Frontend into Server
+
+In `server/server.js`:
+
+```js
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -171,54 +209,65 @@ app.use((req, res, next) => {
     next();
   }
 });
-🚀 9. Local Testing
+```
+
+---
+
+### 🚀 9. Local Testing
+
 Run both servers:
 
-Backend
-bash
-Copy code
+#### Backend
+
+```bash
 cd server
 node server.js
-→ Runs at http://localhost:3001
+```
 
-Frontend
-bash
-Copy code
+→ Runs at **[http://localhost:3001](http://localhost:3001)**
+
+#### Frontend
+
+```bash
 cd client
 npm run dev
-→ Runs at http://localhost:5173
+```
 
-☁️ 10. Deployment (Render)
-Push to GitHub
+→ Runs at **[http://localhost:5173](http://localhost:5173)**
 
-bash
-Copy code
+---
+
+### ☁️ 10. Deployment (Render)
+
+#### Push to GitHub
+
+```bash
 git add .
 git commit -m "Initial project and build"
 git push origin main
-On Render:
+```
 
-Create a New Web Service
+#### On Render:
 
-Connect your GitHub repo
+1. Create a **New Web Service**
+2. Connect your **GitHub repo**
+3. Configure:
 
-Build Command: npm install
+   * **Build Command:** `npm install`
+   * **Start Command:** `node server.js`
+   * **Root Directory:** `/server`
+4. Add **Environment Variables**:
 
-Start Command: node server.js
+   ```
+   OPENWEATHER_KEY=your_api_key_here
+   PORT=10000
+   ```
 
-Root Directory: /server
-
-Add environment variables:
-
-OPENWEATHER_KEY
-
-PORT → 10000
-
-Render automatically deploys both backend and frontend together.
+Render will automatically deploy both backend and frontend together.
 
 ✅ Deployment Log should show:
 
-arduino
-Copy code
+```bash
 ✅ Server running on http://localhost:10000
 ==> Your service is live 🎉
+```
