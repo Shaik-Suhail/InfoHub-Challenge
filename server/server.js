@@ -153,15 +153,14 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Serve static frontend
-app.use(express.static(path.join(__dirname, "../client/dist")));
+// ✅ Serve the React build
+app.use(express.static(path.join(__dirname, "client-dist")));
 
-// ✅ Catch-all for React Router (use regex for Express 5)
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client-dist", "index.html"));
 });
 
-// ---------------- START SERVER ----------------
+// ✅ Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
